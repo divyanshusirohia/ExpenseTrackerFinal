@@ -1,0 +1,191 @@
+starting build "87d7c2e3-62b8-44d0-bf10-3b530bea60a0"
+
+FETCHSOURCE
+Fetching storage object: gs://firstdeploy-428915_cloudbuild/source/1720550717.395175-d0004d7c141043c0ae31b0182f5e15d0.tgz#1720550733520195
+Copying gs://firstdeploy-428915_cloudbuild/source/1720550717.395175-d0004d7c141043c0ae31b0182f5e15d0.tgz#1720550733520195...
+/ [0 files][    0.0 B/ 12.0 MiB]                                                
+/ [1 files][ 12.0 MiB/ 12.0 MiB]                                                
+Operation completed over 1 objects/12.0 MiB.                                     
+BUILD
+Already have image (with digest): gcr.io/cloud-builders/docker
+Sending build context to Docker daemon  41.32MB
+
+Step 1/8 : FROM python:3.9.17-bookworm
+3.9.17-bookworm: Pulling from library/python
+de4cac68b616: Pulling fs layer
+d31b0195ec5f: Pulling fs layer
+9b1fd34c30b7: Pulling fs layer
+c485c4ba3831: Pulling fs layer
+9c94b131279a: Pulling fs layer
+863530a48f51: Pulling fs layer
+6738828c119e: Pulling fs layer
+d271c014c3a0: Pulling fs layer
+9c94b131279a: Waiting
+863530a48f51: Waiting
+6738828c119e: Waiting
+d271c014c3a0: Waiting
+c485c4ba3831: Waiting
+d31b0195ec5f: Verifying Checksum
+d31b0195ec5f: Download complete
+de4cac68b616: Verifying Checksum
+de4cac68b616: Download complete
+9c94b131279a: Verifying Checksum
+9c94b131279a: Download complete
+9b1fd34c30b7: Verifying Checksum
+9b1fd34c30b7: Download complete
+6738828c119e: Verifying Checksum
+6738828c119e: Download complete
+863530a48f51: Verifying Checksum
+863530a48f51: Download complete
+d271c014c3a0: Verifying Checksum
+d271c014c3a0: Download complete
+c485c4ba3831: Verifying Checksum
+c485c4ba3831: Download complete
+de4cac68b616: Pull complete
+d31b0195ec5f: Pull complete
+9b1fd34c30b7: Pull complete
+c485c4ba3831: Pull complete
+9c94b131279a: Pull complete
+863530a48f51: Pull complete
+6738828c119e: Pull complete
+d271c014c3a0: Pull complete
+Digest: sha256:9bae2a5ce72f326c8136d517ade0e9b18080625fb3ba7ec10002e0dc99bc4a70
+Status: Downloaded newer image for python:3.9.17-bookworm
+ ---> 8bdfd6cc4bbf
+Step 2/8 : ENV PYTHONUNBUFFERED True
+ ---> Running in 89bcb5f4bc5d
+Removing intermediate container 89bcb5f4bc5d
+ ---> 930ce76d2321
+Step 3/8 : ENV APP_HOME /back-end
+ ---> Running in e12f211520fe
+Removing intermediate container e12f211520fe
+ ---> 4b0bb125c49a
+Step 4/8 : WORKDIR $APP_HOME
+ ---> Running in ae34c7398055
+Removing intermediate container ae34c7398055
+ ---> f050eed10efa
+Step 5/8 : COPY . ./
+ ---> 1b6ce9b10d36
+Step 6/8 : RUN pip install --no-cache-dir --upgrade pip
+ ---> Running in 2028c8110928
+Requirement already satisfied: pip in /usr/local/lib/python3.9/site-packages (23.0.1)
+Collecting pip
+  Downloading pip-24.1.2-py3-none-any.whl (1.8 MB)
+     â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” 1.8/1.8 MB 7.5 MB/s eta 0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 23.0.1
+    Uninstalling pip-23.0.1:
+      Successfully uninstalled pip-23.0.1
+Successfully installed pip-24.1.2
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[0mRemoving intermediate container 2028c8110928
+ ---> f184eaf1b5b9
+Step 7/8 : RUN pip install --no-cache-dir -r requirements.txt
+ ---> Running in 95fc0f28ba61
+Collecting blinker==1.8.2 (from -r requirements.txt (line 1))
+  Downloading blinker-1.8.2-py3-none-any.whl.metadata (1.6 kB)
+Collecting click==8.1.7 (from -r requirements.txt (line 2))
+  Downloading click-8.1.7-py3-none-any.whl.metadata (3.0 kB)
+Collecting colorama==0.4.6 (from -r requirements.txt (line 3))
+  Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting Flask==3.0.3 (from -r requirements.txt (line 4))
+  Downloading flask-3.0.3-py3-none-any.whl.metadata (3.2 kB)
+Collecting Flask-SQLAlchemy==3.1.1 (from -r requirements.txt (line 5))
+  Downloading flask_sqlalchemy-3.1.1-py3-none-any.whl.metadata (3.4 kB)
+Collecting greenlet==3.0.3 (from -r requirements.txt (line 6))
+  Downloading greenlet-3.0.3-cp39-cp39-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+Collecting gunicorn==22.0.0 (from -r requirements.txt (line 7))
+  Downloading gunicorn-22.0.0-py3-none-any.whl.metadata (4.4 kB)
+Collecting itsdangerous==2.2.0 (from -r requirements.txt (line 8))
+  Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting Jinja2==3.1.4 (from -r requirements.txt (line 9))
+  Downloading jinja2-3.1.4-py3-none-any.whl.metadata (2.6 kB)
+Collecting MarkupSafe==2.1.5 (from -r requirements.txt (line 10))
+  Downloading MarkupSafe-2.1.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.0 kB)
+Collecting packaging==24.1 (from -r requirements.txt (line 11))
+  Downloading packaging-24.1-py3-none-any.whl.metadata (3.2 kB)
+Collecting python-dotenv==1.0.1 (from -r requirements.txt (line 12))
+  Downloading python_dotenv-1.0.1-py3-none-any.whl.metadata (23 kB)
+Collecting SQLAlchemy==2.0.31 (from -r requirements.txt (line 13))
+  Downloading SQLAlchemy-2.0.31-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (9.6 kB)
+Collecting typing_extensions==4.12.2 (from -r requirements.txt (line 14))
+  Downloading typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+Collecting Werkzeug==3.0.3 (from -r requirements.txt (line 15))
+  Downloading werkzeug-3.0.3-py3-none-any.whl.metadata (3.7 kB)
+Collecting importlib-metadata>=3.6.0 (from Flask==3.0.3->-r requirements.txt (line 4))
+  Downloading importlib_metadata-8.0.0-py3-none-any.whl.metadata (4.6 kB)
+Collecting zipp>=0.5 (from importlib-metadata>=3.6.0->Flask==3.0.3->-r requirements.txt (line 4))
+  Downloading zipp-3.19.2-py3-none-any.whl.metadata (3.6 kB)
+Downloading blinker-1.8.2-py3-none-any.whl (9.5 kB)
+Downloading click-8.1.7-py3-none-any.whl (97 kB)
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” 97.9/97.9 kB 2.2 MB/s eta 0:00:00
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading flask-3.0.3-py3-none-any.whl (101 kB)
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” 101.7/101.7 kB 12.4 MB/s eta 0:00:00
+Downloading flask_sqlalchemy-3.1.1-py3-none-any.whl (25 kB)
+Downloading greenlet-3.0.3-cp39-cp39-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (614 kB)
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” 614.3/614.3 kB 12.3 MB/s eta 0:00:00
+Downloading gunicorn-22.0.0-py3-none-any.whl (84 kB)
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” 84.4/84.4 kB 162.6 MB/s eta 0:00:00
+Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Downloading jinja2-3.1.4-py3-none-any.whl (133 kB)
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” 133.3/133.3 kB 186.6 MB/s eta 0:00:00
+Downloading MarkupSafe-2.1.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Downloading packaging-24.1-py3-none-any.whl (53 kB)
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” 54.0/54.0 kB 148.0 MB/s eta 0:00:00
+Downloading python_dotenv-1.0.1-py3-none-any.whl (19 kB)
+Downloading SQLAlchemy-2.0.31-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” 3.1/3.1 MB 43.7 MB/s eta 0:00:00
+Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+Downloading werkzeug-3.0.3-py3-none-any.whl (227 kB)
+   â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â”â” 227.3/227.3 kB 193.5 MB/s eta 0:00:00
+Downloading importlib_metadata-8.0.0-py3-none-any.whl (24 kB)
+Downloading zipp-3.19.2-py3-none-any.whl (9.0 kB)
+Installing collected packages: zipp, typing_extensions, python-dotenv, packaging, MarkupSafe, itsdangerous, greenlet, colorama, click, blinker, Werkzeug, SQLAlchemy, Jinja2, importlib-metadata, gunicorn, Flask, Flask-SQLAlchemy
+Successfully installed Flask-3.0.3 Flask-SQLAlchemy-3.1.1 Jinja2-3.1.4 MarkupSafe-2.1.5 SQLAlchemy-2.0.31 Werkzeug-3.0.3 blinker-1.8.2 click-8.1.7 colorama-0.4.6 greenlet-3.0.3 gunicorn-22.0.0 importlib-metadata-8.0.0 itsdangerous-2.2.0 packaging-24.1 python-dotenv-1.0.1 typing_extensions-4.12.2 zipp-3.19.2
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[0mRemoving intermediate container 95fc0f28ba61
+ ---> 946a7aa5bdee
+Step 8/8 : CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 app:app
+ ---> Running in ad1dd270df0a
+Removing intermediate container ad1dd270df0a
+ ---> 4ac63e20064b
+Successfully built 4ac63e20064b
+Successfully tagged asia-south1-docker.pkg.dev/firstdeploy-428915/cloud-run-source-deploy/exp:latest
+PUSH
+Pushing asia-south1-docker.pkg.dev/firstdeploy-428915/cloud-run-source-deploy/exp
+The push refers to repository [asia-south1-docker.pkg.dev/firstdeploy-428915/cloud-run-source-deploy/exp]
+11015d3e0460: Preparing
+1cf5a93034cc: Preparing
+1b3f9b0f0245: Preparing
+73a94f3a3583: Preparing
+ddab61a14989: Preparing
+6e7022fb2e3d: Preparing
+004040371961: Preparing
+b2e5b1eee192: Preparing
+b485c6cd33a6: Preparing
+6aa872026017: Preparing
+43ba18a5eaf8: Preparing
+ff61a9b258e5: Preparing
+6e7022fb2e3d: Waiting
+004040371961: Waiting
+b2e5b1eee192: Waiting
+b485c6cd33a6: Waiting
+6aa872026017: Waiting
+43ba18a5eaf8: Waiting
+ff61a9b258e5: Waiting
+73a94f3a3583: Pushed
+1b3f9b0f0245: Pushed
+1cf5a93034cc: Pushed
+11015d3e0460: Pushed
+ddab61a14989: Pushed
+6e7022fb2e3d: Pushed
+b2e5b1eee192: Pushed
+004040371961: Pushed
+43ba18a5eaf8: Pushed
+6aa872026017: Pushed
+ff61a9b258e5: Pushed
+b485c6cd33a6: Pushed
+latest: digest: sha256:3251c04fea88ff38cc09158731e83f59566e0ec281e66e7d9a521a81b065ff8f size: 2849
+DONE
